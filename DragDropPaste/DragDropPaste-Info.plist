@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>Dropbox SDK</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>db-947wfcm3nd717y3</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -9,7 +20,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>EightyEight.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.88loc.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,8 +37,10 @@
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012 __MyCompanyName__. All rights reserved.</string>
+	<string>Copyright © 2012 88 Lines of Code. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

@@ -3,13 +3,35 @@
 //  DragDropPaste
 //
 //  Created by Lars Hundebøl on 5/19/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 88 Lines of Code. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
+#import "StatusItemView.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    
+    NSStatusItem *statusItem;
+    StatusItemView *statusItemView;
+}
+
+@property (assign) IBOutlet NSTextField *statusLabel;
+
+@property (assign) IBOutlet NSMenu *statusMenu;
+
+@property (assign) IBOutlet NSButton *connectButton;
+
+@property (assign) IBOutlet NSPopover *popover;
+
+- (IBAction)connectToDropbox:(id)sender;
+
+- (void)showPopover;
+
+- (void)closePopover;
+
+- (void)updateUI;
+
+- (BOOL)isActive;
 
 @end
