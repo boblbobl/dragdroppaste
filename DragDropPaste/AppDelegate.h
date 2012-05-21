@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <DropboxOSX/DropboxOSX.h>
 #import "StatusItemView.h"
 
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-    
+
+@interface AppDelegate : NSObject <NSApplicationDelegate, DBRestClientDelegate> {
+    DBRestClient *restClient;
     NSStatusItem *statusItem;
     StatusItemView *statusItemView;
 }
@@ -31,6 +33,8 @@
 - (void)closePopover;
 
 - (void)updateUI;
+
+- (void)uploadFile:(NSString *)fileName;
 
 - (BOOL)isActive;
 

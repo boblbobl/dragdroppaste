@@ -32,12 +32,25 @@
     [statusItem setAlternateImage:statusHighlightImage];
     [statusItem setHighlightMode: YES];
      */
+}
+
+- (DBRestClient *)restClient {
+    if (!restClient) {
+        restClient =
+        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient.delegate = self;
+    }
+    return restClient;
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
-    
-        
-    
-    
-    
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    NSLog(@"File upload failed with error - %@", error);
 }
 
 - (void)authHelperStateChangedNotification:(NSNotification *)notification {
@@ -50,6 +63,12 @@
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     // This gets called when the user clicks Show "App name". You don't need to do anything for Dropbox here
+}
+
+- (void)uploadFile:(NSString *)localPath {
+    NSString *filename = [localPath lastPathComponent];
+    NSString *destDir = @"/";
+    [[self restClient] uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];
 }
 
 - (void)updateUI {

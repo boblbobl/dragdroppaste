@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StatusItemView : NSView {
+
+@interface StatusItemView : NSView <NSDraggingDestination> {
     NSImage *statusImage;
     NSImage *statusHighlightImage;
 }
