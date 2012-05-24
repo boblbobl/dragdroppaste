@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E40BE2BF1568D288002BC439 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40BE2BE1568D288002BC439 /* StatusItemView.m */; };
+		E40ED464156B75E600D6F6D8 /* StatusBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E40ED462156B75E600D6F6D8 /* StatusBarIcon.png */; };
+		E40ED465156B75E600D6F6D8 /* StatusBarIconInvert.png in Resources */ = {isa = PBXBuildFile; fileRef = E40ED463156B75E600D6F6D8 /* StatusBarIconInvert.png */; };
 		E4A5AB7215681C7D0026B025 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A5AB7115681C7D0026B025 /* WebKit.framework */; };
 		E4A5AB78156826820026B025 /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A5AB77156826820026B025 /* DropboxOSX.framework */; };
 		E4A5AB7A156826BB0026B025 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A5AB79156826BB0026B025 /* Security.framework */; };
@@ -18,8 +20,6 @@
 		E4E4275115677C8A00C598B3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E4E4274F15677C8A00C598B3 /* Credits.rtf */; };
 		E4E4275415677C8A00C598B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E4275315677C8A00C598B3 /* AppDelegate.m */; };
 		E4E4275715677C8A00C598B3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E4275515677C8A00C598B3 /* MainMenu.xib */; };
-		E4E4275E1567936E00C598B3 /* StatusBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E4275D1567936E00C598B3 /* StatusBarIcon.png */; };
-		E4E427601567965700C598B3 /* StatusBarIconAlt.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E4275F1567965700C598B3 /* StatusBarIconAlt.png */; };
 		E4E4276215679D4C00C598B3 /* drupal-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E4276115679D4C00C598B3 /* drupal-logo.png */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +39,8 @@
 /* Begin PBXFileReference section */
 		E40BE2BD1568D288002BC439 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemView.h; sourceTree = "<group>"; };
 		E40BE2BE1568D288002BC439 /* StatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemView.m; sourceTree = "<group>"; };
+		E40ED462156B75E600D6F6D8 /* StatusBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIcon.png; sourceTree = "<group>"; };
+		E40ED463156B75E600D6F6D8 /* StatusBarIconInvert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIconInvert.png; sourceTree = "<group>"; };
 		E4A5AB7115681C7D0026B025 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E4A5AB77156826820026B025 /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxOSX.framework; sourceTree = "<group>"; };
 		E4A5AB79156826BB0026B025 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -56,8 +58,6 @@
 		E4E4275215677C8A00C598B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E4E4275315677C8A00C598B3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E4E4275615677C8A00C598B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		E4E4275D1567936E00C598B3 /* StatusBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIcon.png; sourceTree = "<group>"; };
-		E4E4275F1567965700C598B3 /* StatusBarIconAlt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusBarIconAlt.png; sourceTree = "<group>"; };
 		E4E4276115679D4C00C598B3 /* drupal-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drupal-logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,9 +132,9 @@
 		E4E4274715677C8A00C598B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E40ED462156B75E600D6F6D8 /* StatusBarIcon.png */,
+				E40ED463156B75E600D6F6D8 /* StatusBarIconInvert.png */,
 				E4E4276115679D4C00C598B3 /* drupal-logo.png */,
-				E4E4275F1567965700C598B3 /* StatusBarIconAlt.png */,
-				E4E4275D1567936E00C598B3 /* StatusBarIcon.png */,
 				E4E4274815677C8A00C598B3 /* DragDropPaste-Info.plist */,
 				E4E4274915677C8A00C598B3 /* InfoPlist.strings */,
 				E4E4274C15677C8A00C598B3 /* main.m */,
@@ -199,9 +199,9 @@
 				E4E4274B15677C8A00C598B3 /* InfoPlist.strings in Resources */,
 				E4E4275115677C8A00C598B3 /* Credits.rtf in Resources */,
 				E4E4275715677C8A00C598B3 /* MainMenu.xib in Resources */,
-				E4E4275E1567936E00C598B3 /* StatusBarIcon.png in Resources */,
-				E4E427601567965700C598B3 /* StatusBarIconAlt.png in Resources */,
 				E4E4276215679D4C00C598B3 /* drupal-logo.png in Resources */,
+				E40ED464156B75E600D6F6D8 /* StatusBarIcon.png in Resources */,
+				E40ED465156B75E600D6F6D8 /* StatusBarIconInvert.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,19 +50,63 @@
 			<object class="NSMenu" id="1009427205">
 				<string key="NSTitle"/>
 				<array class="NSMutableArray" key="NSMenuItems">
+					<object class="NSMenuItem" id="119188315">
+						<reference key="NSMenu" ref="1009427205"/>
+						<string key="NSTitle">Not Connected</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<object class="NSCustomResource" key="NSOnImage" id="362466112">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuCheckmark</string>
+						</object>
+						<object class="NSCustomResource" key="NSMixedImage" id="58895299">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">NSMenuMixedState</string>
+						</object>
+					</object>
+					<object class="NSMenuItem" id="113658236">
+						<reference key="NSMenu" ref="1009427205"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="362466112"/>
+						<reference key="NSMixedImage" ref="58895299"/>
+					</object>
+					<object class="NSMenuItem" id="540996755">
+						<reference key="NSMenu" ref="1009427205"/>
+						<string key="NSTitle">Connect to Dropbox</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="362466112"/>
+						<reference key="NSMixedImage" ref="58895299"/>
+					</object>
+					<object class="NSMenuItem" id="901533725">
+						<reference key="NSMenu" ref="1009427205"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="362466112"/>
+						<reference key="NSMixedImage" ref="58895299"/>
+					</object>
+					<object class="NSMenuItem" id="721164021">
+						<reference key="NSMenu" ref="1009427205"/>
+						<string key="NSTitle">About</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="362466112"/>
+						<reference key="NSMixedImage" ref="58895299"/>
+					</object>
 					<object class="NSMenuItem" id="737429891">
 						<reference key="NSMenu" ref="1009427205"/>
 						<string key="NSTitle">Quit</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<object class="NSCustomResource" key="NSOnImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">NSMenuCheckmark</string>
-						</object>
-						<object class="NSCustomResource" key="NSMixedImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">NSMenuMixedState</string>
-						</object>
+						<reference key="NSOnImage" ref="362466112"/>
+						<reference key="NSMixedImage" ref="58895299"/>
 					</object>
 				</array>
 			</object>
@@ -85,7 +129,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{348, 12}, {82, 32}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="177076979"/>
 						<string key="NSReuseIdentifierKey">_NS:687</string>
 						<bool key="NSEnabled">YES</bool>
@@ -121,7 +164,6 @@
 						</set>
 						<string key="NSFrame">{{20, 152}, {150, 40}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="36052086"/>
 						<string key="NSReuseIdentifierKey">_NS:2141</string>
 						<bool key="NSEnabled">YES</bool>
@@ -145,7 +187,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 98}, {438, 17}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="106483209"/>
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
 						<bool key="NSEnabled">YES</bool>
@@ -181,7 +222,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 12}, {199, 32}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="149877048"/>
 						<string key="NSReuseIdentifierKey">_NS:687</string>
 						<bool key="NSEnabled">YES</bool>
@@ -205,8 +245,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{430, 12}, {82, 32}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:687</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="440854798">
@@ -227,7 +265,6 @@
 				</array>
 				<string key="NSFrameSize">{526, 212}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="764929976"/>
 				<string key="NSReuseIdentifierKey">_NS:1192</string>
 				<string key="NSClassName">NSView</string>
@@ -301,6 +338,30 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuItemStatus</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="119188315"/>
+					</object>
+					<int key="connectionID">589</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuItemConnect</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="540996755"/>
+					</object>
+					<int key="connectionID">590</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">connectToDropbox:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="540996755"/>
+					</object>
+					<int key="connectionID">591</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="96086332"/>
 						<reference key="destination" ref="1044575992"/>
@@ -365,6 +426,11 @@
 						<reference key="object" ref="1009427205"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="737429891"/>
+							<reference ref="721164021"/>
+							<reference ref="540996755"/>
+							<reference ref="901533725"/>
+							<reference ref="119188315"/>
+							<reference ref="113658236"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -461,6 +527,31 @@
 						<reference key="object" ref="897345051"/>
 						<reference key="parent" ref="149877048"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">582</int>
+						<reference key="object" ref="721164021"/>
+						<reference key="parent" ref="1009427205"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">583</int>
+						<reference key="object" ref="540996755"/>
+						<reference key="parent" ref="1009427205"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">585</int>
+						<reference key="object" ref="901533725"/>
+						<reference key="parent" ref="1009427205"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">586</int>
+						<reference key="object" ref="119188315"/>
+						<reference key="parent" ref="1009427205"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">587</int>
+						<reference key="object" ref="113658236"/>
+						<reference key="parent" ref="1009427205"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -484,34 +575,38 @@
 				<string key="574.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="575.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="576.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="582.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="583.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="585.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="586.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="587.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">581</int>
+			<int key="maxID">591</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="connectToDropbox:">id</string>
-						<string key="showPopover:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="connectToDropbox:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">connectToDropbox:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">connectToDropbox:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">connectToDropbox:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="showPopover:">
-							<string key="name">showPopover:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="connectButton">NSButton</string>
+						<string key="menuItemConnect">NSMenuItem</string>
+						<string key="menuItemStatus">NSMenuItem</string>
 						<string key="popover">NSPopover</string>
 						<string key="statusLabel">NSTextField</string>
 						<string key="statusMenu">NSMenu</string>
@@ -520,6 +615,14 @@
 						<object class="IBToOneOutletInfo" key="connectButton">
 							<string key="name">connectButton</string>
 							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="menuItemConnect">
+							<string key="name">menuItemConnect</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="menuItemStatus">
+							<string key="name">menuItemStatus</string>
+							<string key="candidateClassName">NSMenuItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="popover">
 							<string key="name">popover</string>

@@ -8,10 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-
-@interface StatusItemView : NSView <NSDraggingDestination> {
+@interface StatusItemView : NSView <NSMenuDelegate> {
     NSImage *statusImage;
     NSImage *statusHighlightImage;
+    BOOL isMenuVisible;
 }
+
+@property (assign) NSStatusItem *statusItem;
 
 @end

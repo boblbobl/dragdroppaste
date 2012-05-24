@@ -11,15 +11,20 @@
 
 @implementation StatusItemView
 
+@synthesize statusItem = _statusItem;
+
 - (id)initWithFrame:(NSRect)frame
 {
+    NSLog(@"initWithFrame");
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
         NSBundle *bundle = [NSBundle mainBundle];
         
         statusImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"StatusBarIcon" ofType:@"png"]];
-        statusHighlightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"StatusBarIconAlt" ofType:@"png"]];
+        statusHighlightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"StatusBarIconInvert" ofType:@"png"]];
+        
+        isMenuVisible = NO;
         
         [self registerForDraggedTypes: [NSArray arrayWithObject:NSFilenamesPboardType]];
     }
@@ -29,40 +34,56 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    dirtyRect = CGRectInset(dirtyRect, 2, 2);
-    /*[statusImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];*/
+    NSLog(@"Draw Rect");
+    dirtyRect = CGRectInset(dirtyRect, 3, 3);
     
-    AppDelegate *appDelegate = [NSApp delegate];
+    [_statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isMenuVisible];
     
-    if ([appDelegate isActive]) {
-        [[NSColor selectedMenuItemColor] set]; /* blueish */
-    } else {
-        [[NSColor textColor] set]; /* blackish */ 
+    if (!isMenuVisible) {
+        [statusImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
     }
-    NSRectFill(dirtyRect);  
+    else {
+        [statusHighlightImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    }
 }
 
 - (void)mouseDown:(NSEvent *)event 
 {
-    AppDelegate *appDelegate = [NSApp delegate];
-    
-    if ([appDelegate isActive]) {
-        [appDelegate closePopover];
-    }
-    else {
-        [appDelegate showPopover];
-    }
+    [[self menu] setDelegate: self];
+    [_statusItem popUpStatusItemMenu:[self menu]];
+    [self setNeedsDisplay:YES];
 }
+
+#pragma NSMenu Delegate methods 
+
+- (void)menuWillOpen:(NSMenu *)menu {
+    NSLog(@"menuWillOpen");
+    isMenuVisible = YES;
+    [self setNeedsDisplay:YES];
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+    
+    NSLog(@"menuDidClose");
+    isMenuVisible = NO;
+    [menu setDelegate:nil];    
+}
+
+
 
 #pragma Drag Destination Related
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
     NSLog(@"draggingEntered");
-    //TODO: Do something here...
     
     [self setNeedsDisplay:YES];
     
-    return NSDragOperationCopy;
+    if([[[sender draggingPasteboard] pasteboardItems] count] == 1) {
+        return NSDragOperationCopy;
+    }
+    else {
+        return NSDragOperationNone;
+    }
 }
 
 - (void)draggingExited:(id<NSDraggingInfo>)sender {
@@ -82,6 +103,7 @@
     AppDelegate *appDelegate = [NSApp delegate];
     NSArray *draggedFilenames = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
     
+    //DESIGN: The for loop, is currently irrelevant since it is only allowed to upload one file.
     for (NSString *filePath in draggedFilenames) {
         NSLog(@"Uploading %@", filePath);
         [appDelegate uploadFile:filePath];

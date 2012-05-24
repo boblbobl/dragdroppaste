@@ -17,21 +17,24 @@
 
 @synthesize popover = _popover;
 
-@synthesize statusMenu = _statusMenu;
+@synthesize menuItemStatus = _menuItemStatus;
+@synthesize menuItemConnect = _menuItemConnect;
+
 
 - (void)awakeFromNib {
+    pasteBoard = [NSPasteboard generalPasteboard];
+    
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        
+    
     CGFloat thickness = [[NSStatusBar systemStatusBar] thickness];
     statusItemView = [[StatusItemView alloc] initWithFrame:(NSRect){.size={thickness, thickness}}];
+    
+    statusItemView.statusItem = statusItem;
+    [statusItemView setMenu:statusMenu];
+    
+    
     [statusItem setView: statusItemView];
-
-    /*
-    [statusItem setMenu:statusMenu];
-    [statusItem setImage:statusImage];
-    [statusItem setAlternateImage:statusHighlightImage];
     [statusItem setHighlightMode: YES];
-     */
 }
 
 - (DBRestClient *)restClient {
@@ -45,8 +48,8 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+    [self writeToPasteBoard: metadata.filename];
+    NSLog(@"File uploaded successfully to path: %@", metadata.filename);
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
@@ -66,25 +69,34 @@
 }
 
 - (void)uploadFile:(NSString *)localPath {
-    NSString *filename = [localPath lastPathComponent];
-    NSString *destDir = @"/";
-    [[self restClient] uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];
+    if ([[DBSession sharedSession] isLinked]) {
+        NSString *filename = [localPath lastPathComponent];
+        NSString *destDir = @"/Public/DragDropPaste/";
+        [[self restClient] uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];
+    }
+}
+
+- (BOOL)writeToPasteBoard:(NSString *)stringToWrite
+{
+    NSLog(@"writeToPasteBoard: %@", stringToWrite);
+    [pasteBoard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
+    return [pasteBoard setString:stringToWrite forType:NSStringPboardType];
 }
 
 - (void)updateUI {
     NSLog(@"Update UI");
     if ([[DBSession sharedSession] isLinked]) {
+        self.menuItemStatus.title = @"Connected";
+        self.menuItemConnect.title = @"Disconnect from Dropbox";
         self.statusLabel.stringValue = @"You are now connected to Dropbox.";
         self.connectButton.title = @"Disconnect from Dropbox";
     } else {
+        self.menuItemStatus.title = @"Not Connected";
         self.statusLabel.stringValue = @"You need to connect to Dropbox for DragDropPaste to work.";
+        self.menuItemConnect.title = @"Connect to Dropbox";
         self.connectButton.title = @"Connect to Dropbox";
         self.connectButton.enabled = ![[DBAuthHelperOSX sharedHelper] isLoading];
     }
-}
-
-- (BOOL)isActive {
-    return [[self popover] isShown];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -116,6 +128,8 @@
     NSAppleEventManager *em = [NSAppleEventManager sharedAppleEventManager];
     [em setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:)
           forEventClass:kInternetEventClass andEventID:kAEGetURL];
+    
+    
 }
 
 - (void)closePopover {
@@ -126,7 +140,6 @@
     [[self popover] showRelativeToRect:[statusItemView frame] ofView:statusItemView preferredEdge:NSMaxYEdge];
     
 }
-
 
 - (IBAction)connectToDropbox:(id)sender {
     if ([[DBSession sharedSession] isLinked]) {

@@ -13,14 +13,21 @@
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, DBRestClientDelegate> {
+    NSPasteboard *pasteBoard;
     DBRestClient *restClient;
     NSStatusItem *statusItem;
     StatusItemView *statusItemView;
+    IBOutlet NSMenu *statusMenu;
+    
+    NSImage *statusImage;
+    NSImage *statusHighlightImage;
 }
 
 @property (assign) IBOutlet NSTextField *statusLabel;
 
-@property (assign) IBOutlet NSMenu *statusMenu;
+@property (assign) IBOutlet NSMenuItem *menuItemStatus;
+
+@property (assign) IBOutlet NSMenuItem *menuItemConnect;
 
 @property (assign) IBOutlet NSButton *connectButton;
 
@@ -36,6 +43,6 @@
 
 - (void)uploadFile:(NSString *)fileName;
 
-- (BOOL)isActive;
+- (BOOL)writeToPasteBoard:(NSString *)stringToWrite;
 
 @end
