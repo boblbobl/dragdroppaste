@@ -13,6 +13,7 @@
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, DBRestClientDelegate> {
+    NSString *dropboxUID;
     NSPasteboard *pasteBoard;
     DBRestClient *restClient;
     NSStatusItem *statusItem;
@@ -23,13 +24,9 @@
     NSImage *statusHighlightImage;
 }
 
-@property (assign) IBOutlet NSTextField *statusLabel;
-
 @property (assign) IBOutlet NSMenuItem *menuItemStatus;
 
 @property (assign) IBOutlet NSMenuItem *menuItemConnect;
-
-@property (assign) IBOutlet NSButton *connectButton;
 
 @property (assign) IBOutlet NSPopover *popover;
 

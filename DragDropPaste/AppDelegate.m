@@ -11,12 +11,7 @@
 
 @implementation AppDelegate
 
-@synthesize statusLabel = _statusLabel;
-
-@synthesize connectButton = _connectButton;
-
 @synthesize popover = _popover;
-
 @synthesize menuItemStatus = _menuItemStatus;
 @synthesize menuItemConnect = _menuItemConnect;
 
@@ -39,8 +34,7 @@
 
 - (DBRestClient *)restClient {
     if (!restClient) {
-        restClient =
-        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
         restClient.delegate = self;
     }
     return restClient;
@@ -48,8 +42,20 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    [self writeToPasteBoard: metadata.filename];
-    NSLog(@"File uploaded successfully to path: %@", metadata.filename);
+    
+    NSString *shortName = ([metadata.filename length] > 20 ? [metadata.filename substringToIndex:20] : metadata.filename);
+    
+    self.menuItemStatus.title = [NSString stringWithFormat:@"Uploaded %@", shortName];
+    
+    NSString *encodedFilename = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)metadata.filename, NULL, (CFStringRef)@"!’\"();:@&=+$,/?%#[]% ", kCFStringEncodingISOLatin1);
+    
+    NSString *url = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%@/DragDropPaste/%@", dropboxUID, encodedFilename];
+    [self writeToPasteBoard: url];
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client loadedAccountInfo:(DBAccountInfo*)info {
+    dropboxUID = [info userId];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
@@ -86,16 +92,13 @@
 - (void)updateUI {
     NSLog(@"Update UI");
     if ([[DBSession sharedSession] isLinked]) {
+        [self.restClient loadAccountInfo];
         self.menuItemStatus.title = @"Connected";
         self.menuItemConnect.title = @"Disconnect from Dropbox";
-        self.statusLabel.stringValue = @"You are now connected to Dropbox.";
-        self.connectButton.title = @"Disconnect from Dropbox";
     } else {
         self.menuItemStatus.title = @"Not Connected";
-        self.statusLabel.stringValue = @"You need to connect to Dropbox for DragDropPaste to work.";
         self.menuItemConnect.title = @"Connect to Dropbox";
-        self.connectButton.title = @"Connect to Dropbox";
-        self.connectButton.enabled = ![[DBAuthHelperOSX sharedHelper] isLoading];
+        self.menuItemConnect.enabled = ![[DBAuthHelperOSX sharedHelper] isLoading];
     }
 }
 
@@ -128,8 +131,6 @@
     NSAppleEventManager *em = [NSAppleEventManager sharedAppleEventManager];
     [em setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:)
           forEventClass:kInternetEventClass andEventID:kAEGetURL];
-    
-    
 }
 
 - (void)closePopover {
@@ -138,7 +139,6 @@
 
 - (void)showPopover {
     [[self popover] showRelativeToRect:[statusItemView frame] ofView:statusItemView preferredEdge:NSMaxYEdge];
-    
 }
 
 - (IBAction)connectToDropbox:(id)sender {

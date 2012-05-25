@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11D50</string>
+		<string key="IBDocument.SystemVersion">11E53</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">1938</string>
@@ -124,33 +124,6 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSButton" id="149877048">
-						<reference key="NSNextResponder" ref="1044575992"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{348, 12}, {82, 32}}</string>
-						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSNextKeyView" ref="177076979"/>
-						<string key="NSReuseIdentifierKey">_NS:687</string>
-						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="897345051">
-							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Quit</string>
-							<object class="NSFont" key="NSSupport" id="432802280">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
-							</object>
-							<string key="NSCellIdentifier">_NS:687</string>
-							<reference key="NSControlView" ref="149877048"/>
-							<int key="NSButtonFlags">-2038284033</int>
-							<int key="NSButtonFlags2">129</int>
-							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
-							<int key="NSPeriodicDelay">200</int>
-							<int key="NSPeriodicInterval">25</int>
-						</object>
-					</object>
 					<object class="NSImageView" id="764929976">
 						<reference key="NSNextResponder" ref="1044575992"/>
 						<int key="NSvFlags">12</int>
@@ -164,6 +137,7 @@
 						</set>
 						<string key="NSFrame">{{20, 152}, {150, 40}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="36052086"/>
 						<string key="NSReuseIdentifierKey">_NS:2141</string>
 						<bool key="NSEnabled">YES</bool>
@@ -187,14 +161,19 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 98}, {438, 17}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSNextKeyView" ref="106483209"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="177076979"/>
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="865533315">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">You need to connect to Dropbox for DragDropPaste to work.</string>
-							<reference key="NSSupport" ref="432802280"/>
+							<object class="NSFont" key="NSSupport" id="432802280">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">1044</int>
+							</object>
 							<string key="NSCellIdentifier">_NS:3944</string>
 							<reference key="NSControlView" ref="36052086"/>
 							<object class="NSColor" key="NSBackgroundColor">
@@ -217,47 +196,26 @@
 							</object>
 						</object>
 					</object>
-					<object class="NSButton" id="106483209">
-						<reference key="NSNextResponder" ref="1044575992"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{14, 12}, {199, 32}}</string>
-						<reference key="NSSuperview" ref="1044575992"/>
-						<reference key="NSNextKeyView" ref="149877048"/>
-						<string key="NSReuseIdentifierKey">_NS:687</string>
-						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="596045806">
-							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Disconnect from Dropbox</string>
-							<reference key="NSSupport" ref="432802280"/>
-							<string key="NSCellIdentifier">_NS:687</string>
-							<reference key="NSControlView" ref="106483209"/>
-							<int key="NSButtonFlags">-2038284033</int>
-							<int key="NSButtonFlags2">129</int>
-							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
-							<int key="NSPeriodicDelay">200</int>
-							<int key="NSPeriodicInterval">25</int>
-						</object>
-					</object>
 					<object class="NSButton" id="177076979">
 						<reference key="NSNextResponder" ref="1044575992"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{430, 12}, {82, 32}}</string>
 						<reference key="NSSuperview" ref="1044575992"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:687</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="440854798">
 							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Close</string>
+							<string key="NSContents">OK</string>
 							<reference key="NSSupport" ref="432802280"/>
 							<string key="NSCellIdentifier">_NS:687</string>
 							<reference key="NSControlView" ref="177076979"/>
 							<int key="NSButtonFlags">-2038284033</int>
 							<int key="NSButtonFlags2">129</int>
 							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
+							<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 							<int key="NSPeriodicDelay">200</int>
 							<int key="NSPeriodicInterval">25</int>
 						</object>
@@ -265,6 +223,7 @@
 				</array>
 				<string key="NSFrameSize">{526, 212}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="764929976"/>
 				<string key="NSReuseIdentifierKey">_NS:1192</string>
 				<string key="NSClassName">NSView</string>
@@ -289,14 +248,6 @@
 					<int key="connectionID">541</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">terminate:</string>
-						<reference key="source" ref="1014"/>
-						<reference key="destination" ref="149877048"/>
-					</object>
-					<int key="connectionID">577</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">statusMenu</string>
 						<reference key="source" ref="976324537"/>
@@ -311,30 +262,6 @@
 						<reference key="destination" ref="974664175"/>
 					</object>
 					<int key="connectionID">565</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">connectToDropbox:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="106483209"/>
-					</object>
-					<int key="connectionID">579</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">connectButton</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="106483209"/>
-					</object>
-					<int key="connectionID">580</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">statusLabel</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="36052086"/>
-					</object>
-					<int key="connectionID">581</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -456,9 +383,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="764929976"/>
 							<reference ref="177076979"/>
-							<reference ref="106483209"/>
 							<reference ref="36052086"/>
-							<reference ref="149877048"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -474,14 +399,6 @@
 						<int key="objectID">567</int>
 						<reference key="object" ref="440854798"/>
 						<reference key="parent" ref="177076979"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">569</int>
-						<reference key="object" ref="106483209"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="596045806"/>
-						</array>
-						<reference key="parent" ref="1044575992"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">570</int>
@@ -508,24 +425,6 @@
 						<int key="objectID">573</int>
 						<reference key="object" ref="865533315"/>
 						<reference key="parent" ref="36052086"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">574</int>
-						<reference key="object" ref="596045806"/>
-						<reference key="parent" ref="106483209"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">575</int>
-						<reference key="object" ref="149877048"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="897345051"/>
-						</array>
-						<reference key="parent" ref="1044575992"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">576</int>
-						<reference key="object" ref="897345051"/>
-						<reference key="parent" ref="149877048"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">582</int>
@@ -567,14 +466,10 @@
 				<string key="558.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="566.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="567.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="569.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="570.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="571.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="572.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="573.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="574.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="575.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="576.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="582.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="583.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="585.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
