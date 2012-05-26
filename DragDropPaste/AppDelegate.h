@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <DropboxOSX/DropboxOSX.h>
 #import "StatusItemView.h"
-
+#import "AboutController.h"
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, DBRestClientDelegate> {
@@ -18,6 +18,7 @@
     DBRestClient *restClient;
     NSStatusItem *statusItem;
     StatusItemView *statusItemView;
+    AboutController *aboutController;
     IBOutlet NSMenu *statusMenu;
     
     NSImage *statusImage;
@@ -29,6 +30,8 @@
 @property (assign) IBOutlet NSMenuItem *menuItemConnect;
 
 @property (assign) IBOutlet NSPopover *popover;
+
+- (IBAction)showAbout:(id)sender;
 
 - (IBAction)connectToDropbox:(id)sender;
 

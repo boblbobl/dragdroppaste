@@ -14,6 +14,8 @@
 		E4A5AB78156826820026B025 /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A5AB77156826820026B025 /* DropboxOSX.framework */; };
 		E4A5AB7A156826BB0026B025 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A5AB79156826BB0026B025 /* Security.framework */; };
 		E4A5AB7C156827850026B025 /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E4A5AB7B156827850026B025 /* DropboxOSX.framework */; };
+		E4C0A2B6156F35E000351C53 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C0A2B5156F35E000351C53 /* AboutController.m */; };
+		E4C0A2B9156F37E500351C53 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C0A2B8156F37E500351C53 /* About.xib */; };
 		E4E4274115677C8A00C598B3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E4274015677C8A00C598B3 /* Cocoa.framework */; };
 		E4E4274B15677C8A00C598B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4E4274915677C8A00C598B3 /* InfoPlist.strings */; };
 		E4E4274D15677C8A00C598B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E4274C15677C8A00C598B3 /* main.m */; };
@@ -45,6 +47,9 @@
 		E4A5AB77156826820026B025 /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxOSX.framework; sourceTree = "<group>"; };
 		E4A5AB79156826BB0026B025 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4A5AB7B156827850026B025 /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxOSX.framework; sourceTree = "<group>"; };
+		E4C0A2B4156F35E000351C53 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		E4C0A2B5156F35E000351C53 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
+		E4C0A2B8156F37E500351C53 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		E4E4273C15677C8A00C598B3 /* DragDropPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragDropPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E4274015677C8A00C598B3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E4E4274315677C8A00C598B3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -125,6 +130,9 @@
 				E4E4274715677C8A00C598B3 /* Supporting Files */,
 				E40BE2BD1568D288002BC439 /* StatusItemView.h */,
 				E40BE2BE1568D288002BC439 /* StatusItemView.m */,
+				E4C0A2B4156F35E000351C53 /* AboutController.h */,
+				E4C0A2B5156F35E000351C53 /* AboutController.m */,
+				E4C0A2B8156F37E500351C53 /* About.xib */,
 			);
 			path = DragDropPaste;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 				E4E4276215679D4C00C598B3 /* drupal-logo.png in Resources */,
 				E40ED464156B75E600D6F6D8 /* StatusBarIcon.png in Resources */,
 				E40ED465156B75E600D6F6D8 /* StatusBarIconInvert.png in Resources */,
+				E4C0A2B9156F37E500351C53 /* About.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +224,7 @@
 				E4E4274D15677C8A00C598B3 /* main.m in Sources */,
 				E4E4275415677C8A00C598B3 /* AppDelegate.m in Sources */,
 				E40BE2BF1568D288002BC439 /* StatusItemView.m in Sources */,
+				E4C0A2B6156F35E000351C53 /* AboutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

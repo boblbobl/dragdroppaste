@@ -90,7 +90,6 @@
 }
 
 - (void)updateUI {
-    NSLog(@"Update UI");
     if ([[DBSession sharedSession] isLinked]) {
         [self.restClient loadAccountInfo];
         self.menuItemStatus.title = @"Connected";
@@ -139,6 +138,15 @@
 
 - (void)showPopover {
     [[self popover] showRelativeToRect:[statusItemView frame] ofView:statusItemView preferredEdge:NSMaxYEdge];
+}
+
+- (IBAction)showAbout:(id)sender {
+    
+    NSAttributedString *creditString = [[NSAttributedString alloc] initWithString:@"Brought to you by\nLars Hundebøl"];
+    NSString *copyRightString = @"Copyright \xc2\xa9 2012 88 Lines of Code.";
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: creditString,		 @"Credits", copyRightString, @"Copyright", nil];
+    [NSApp orderFrontStandardAboutPanelWithOptions:dict];
 }
 
 - (IBAction)connectToDropbox:(id)sender {

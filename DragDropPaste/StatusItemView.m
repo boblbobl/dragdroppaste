@@ -15,7 +15,6 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-    NSLog(@"initWithFrame");
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
@@ -32,9 +31,7 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    NSLog(@"Draw Rect");
+- (void)drawRect:(NSRect)dirtyRect {
     dirtyRect = CGRectInset(dirtyRect, 3, 3);
     
     [_statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isMenuVisible];
@@ -47,8 +44,7 @@
     }
 }
 
-- (void)mouseDown:(NSEvent *)event 
-{
+- (void)mouseDown:(NSEvent *)event {
     [[self menu] setDelegate: self];
     [_statusItem popUpStatusItemMenu:[self menu]];
     [self setNeedsDisplay:YES];
@@ -57,25 +53,18 @@
 #pragma NSMenu Delegate methods 
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    NSLog(@"menuWillOpen");
     isMenuVisible = YES;
     [self setNeedsDisplay:YES];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
-    
-    NSLog(@"menuDidClose");
     isMenuVisible = NO;
     [menu setDelegate:nil];    
 }
 
-
-
 #pragma Drag Destination Related
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
-    NSLog(@"draggingEntered");
-    
     [self setNeedsDisplay:YES];
     
     if([[[sender draggingPasteboard] pasteboardItems] count] == 1) {
@@ -87,19 +76,14 @@
 }
 
 - (void)draggingExited:(id<NSDraggingInfo>)sender {
-    NSLog(@"draggingExited");
-    
     [self setNeedsDisplay:YES];
 }
 
 - (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
-    NSLog(@"prepareForDragOperation");
     return YES;
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-    NSLog(@"performDragOperation");
-    
     AppDelegate *appDelegate = [NSApp delegate];
     NSArray *draggedFilenames = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
     
