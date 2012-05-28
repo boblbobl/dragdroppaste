@@ -31,20 +31,60 @@
     return self;
 }
 
+- (void)startAnimating
+{
+    currentFrame = 0;
+    animTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
+}
+
+- (void)stopAnimating
+{
+    currentFrame = -1;
+    [animTimer invalidate];
+    [self setNeedsDisplay:YES];
+}
+
+- (void)updateImage:(NSTimer*)timer
+{
+    NSString *imageName = [NSString stringWithFormat:@"step-%d", currentFrame];
+    NSLog(@"Set image: %@", imageName);
+    
+    if (currentFrame > 6)
+        currentFrame = 0;
+    else
+        currentFrame = currentFrame+1;
+    
+    /*
+    NSImage* image = [NSImage imageNamed:[NSString stringWithFormat:@"step-%d",currentFrame]];
+    [statusImage setImage:image];
+    */
+    [self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
+    //NSLog(@"drawRect");
+    
     dirtyRect = CGRectInset(dirtyRect, 3, 3);
     
-    [_statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isMenuVisible];
-    
-    if (!isMenuVisible) {
-        [statusImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    if (currentFrame > -1) {
+        NSImage* image = [NSImage imageNamed:[NSString stringWithFormat:@"step-%d", currentFrame]];
+        [image drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
     }
     else {
-        [statusHighlightImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+        [_statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isMenuVisible];
+        
+        if (!isMenuVisible) {
+            [statusImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+        }
+        else {
+            [statusHighlightImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+        }
     }
 }
 
 - (void)mouseDown:(NSEvent *)event {
+    [self stopAnimating];
+    
     [[self menu] setDelegate: self];
     [_statusItem popUpStatusItemMenu:[self menu]];
     [self setNeedsDisplay:YES];

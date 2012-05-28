@@ -12,8 +12,14 @@
     NSImage *statusImage;
     NSImage *statusHighlightImage;
     BOOL isMenuVisible;
+    NSInteger currentFrame;
+    NSTimer* animTimer;
 }
 
 @property (assign) NSStatusItem *statusItem;
+
+- (void)startAnimating;
+
+- (void)stopAnimating;
 
 @end

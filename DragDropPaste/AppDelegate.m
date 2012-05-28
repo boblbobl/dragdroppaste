@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <DropboxOSX/DropboxOSX.h>
+#import "URLShortener.h"
 
 @implementation AppDelegate
 
@@ -45,12 +46,24 @@
     
     NSString *shortName = ([metadata.filename length] > 20 ? [metadata.filename substringToIndex:20] : metadata.filename);
     
+    
+    
     self.menuItemStatus.title = [NSString stringWithFormat:@"Uploaded %@", shortName];
     
     NSString *encodedFilename = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)metadata.filename, NULL, (CFStringRef)@"!’\"();:@&=+$,/?%#[]% ", kCFStringEncodingISOLatin1);
     
     NSString *url = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%@/DragDropPaste/%@", dropboxUID, encodedFilename];
-    [self writeToPasteBoard: url];
+    
+    if (!urlShortener) {
+        urlShortener = [[URLShortener alloc] init];
+    }
+    
+    NSString *shortUrl = [urlShortener shortURL:url];
+                          
+    [self writeToPasteBoard: shortUrl];
+    
+    [statusItemView stopAnimating];
+    
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
 }
 
@@ -76,6 +89,8 @@
 
 - (void)uploadFile:(NSString *)localPath {
     if ([[DBSession sharedSession] isLinked]) {
+        [statusItemView startAnimating];
+        
         NSString *filename = [localPath lastPathComponent];
         NSString *destDir = @"/Public/DragDropPaste/";
         [[self restClient] uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];

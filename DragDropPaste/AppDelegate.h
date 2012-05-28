@@ -10,6 +10,7 @@
 #import <DropboxOSX/DropboxOSX.h>
 #import "StatusItemView.h"
 #import "AboutController.h"
+#import "URLShortener.h"
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, DBRestClientDelegate> {
@@ -19,6 +20,7 @@
     NSStatusItem *statusItem;
     StatusItemView *statusItemView;
     AboutController *aboutController;
+    URLShortener *urlShortener;
     IBOutlet NSMenu *statusMenu;
     
     NSImage *statusImage;
