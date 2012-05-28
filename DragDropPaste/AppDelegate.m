@@ -43,13 +43,13 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    
+    /*
     NSString *shortName = ([metadata.filename length] > 20 ? [metadata.filename substringToIndex:20] : metadata.filename);
     
     
     
     self.menuItemStatus.title = [NSString stringWithFormat:@"Uploaded %@", shortName];
-    
+    */
     NSString *encodedFilename = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)metadata.filename, NULL, (CFStringRef)@"!’\"();:@&=+$,/?%#[]% ", kCFStringEncodingISOLatin1);
     
     NSString *url = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%@/DragDropPaste/%@", dropboxUID, encodedFilename];
@@ -59,7 +59,8 @@
     }
     
     NSString *shortUrl = [urlShortener shortURL:url];
-                          
+    
+    self.menuItemStatus.title = [NSString stringWithFormat:@"%@", shortUrl];
     [self writeToPasteBoard: shortUrl];
     
     [statusItemView showUploadImage];
