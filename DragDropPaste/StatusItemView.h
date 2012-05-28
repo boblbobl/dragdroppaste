@@ -11,12 +11,16 @@
 @interface StatusItemView : NSView <NSMenuDelegate> {
     NSImage *statusImage;
     NSImage *statusHighlightImage;
+    NSImage *statusUploadImage;
     BOOL isMenuVisible;
+    BOOL isUploadImageVisible;
     NSInteger currentFrame;
     NSTimer* animTimer;
 }
 
 @property (assign) NSStatusItem *statusItem;
+
+- (void)showUploadImage;
 
 - (void)startAnimating;
 

@@ -22,8 +22,11 @@
         
         statusImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"StatusBarIcon" ofType:@"png"]];
         statusHighlightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"StatusBarIconInvert" ofType:@"png"]];
+        statusUploadImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"StatusBarIconUpload" ofType:@"png"]];
         
         isMenuVisible = NO;
+        isUploadImageVisible = NO;
+        currentFrame = -1;
         
         [self registerForDraggedTypes: [NSArray arrayWithObject:NSFilenamesPboardType]];
     }
@@ -31,44 +34,52 @@
     return self;
 }
 
+- (void)hideUploadImage:(NSTimer*)timer {
+    [self stopAnimating];
+}
+
+- (void)showUploadImage {
+    [self stopAnimating];
+    isUploadImageVisible = YES;
+    [self setNeedsDisplay:YES];
+    
+    animTimer = [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(hideUploadImage:) userInfo:nil repeats:NO];
+}
+
 - (void)startAnimating
 {
+    [self stopAnimating];
     currentFrame = 0;
-    animTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
+    animTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(updateFrame:) userInfo:nil repeats:YES];
 }
 
 - (void)stopAnimating
 {
+    isUploadImageVisible = NO; 
     currentFrame = -1;
     [animTimer invalidate];
     [self setNeedsDisplay:YES];
 }
 
-- (void)updateImage:(NSTimer*)timer
-{
-    NSString *imageName = [NSString stringWithFormat:@"step-%d", currentFrame];
-    NSLog(@"Set image: %@", imageName);
-    
+- (void)updateFrame:(NSTimer*)timer
+{    
     if (currentFrame > 6)
         currentFrame = 0;
     else
         currentFrame = currentFrame+1;
-    
-    /*
-    NSImage* image = [NSImage imageNamed:[NSString stringWithFormat:@"step-%d",currentFrame]];
-    [statusImage setImage:image];
-    */
+
     [self setNeedsDisplay:YES];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    //NSLog(@"drawRect");
-    
     dirtyRect = CGRectInset(dirtyRect, 3, 3);
     
     if (currentFrame > -1) {
         NSImage* image = [NSImage imageNamed:[NSString stringWithFormat:@"step-%d", currentFrame]];
         [image drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    }
+    else if (isUploadImageVisible) {
+        [statusUploadImage drawInRect:dirtyRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
     }
     else {
         [_statusItem drawStatusBarBackgroundInRect:[self bounds] withHighlight:isMenuVisible];
@@ -83,6 +94,7 @@
 }
 
 - (void)mouseDown:(NSEvent *)event {
+    //Make sure to reset icons and stop animation on mouse click
     [self stopAnimating];
     
     [[self menu] setDelegate: self];
@@ -129,7 +141,6 @@
     
     //DESIGN: The for loop, is currently irrelevant since it is only allowed to upload one file.
     for (NSString *filePath in draggedFilenames) {
-        NSLog(@"Uploading %@", filePath);
         [appDelegate uploadFile:filePath];
     }
     

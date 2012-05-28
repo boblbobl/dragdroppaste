@@ -62,7 +62,7 @@
                           
     [self writeToPasteBoard: shortUrl];
     
-    [statusItemView stopAnimating];
+    [statusItemView showUploadImage];
     
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
 }
