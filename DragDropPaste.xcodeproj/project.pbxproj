@@ -211,7 +211,7 @@
 		E4E4273315677C8A00C598B3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "88 Lines of Code";
 			};
 			buildConfigurationList = E4E4273615677C8A00C598B3 /* Build configuration list for PBXProject "DragDropPaste" */;

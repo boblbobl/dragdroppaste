@@ -41,35 +41,19 @@
     return restClient;
 }
 
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    /*
-    NSString *shortName = ([metadata.filename length] > 20 ? [metadata.filename substringToIndex:20] : metadata.filename);
-    
-    
-    
-    self.menuItemStatus.title = [NSString stringWithFormat:@"Uploaded %@", shortName];
-    */
-    NSString *encodedFilename = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)metadata.filename, NULL, (CFStringRef)@"!’\"();:@&=+$,/?%#[]% ", kCFStringEncodingISOLatin1);
-    
-    NSString *url = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%@/DragDropPaste/%@", dropboxUID, encodedFilename];
-    
-    if (!urlShortener) {
-        urlShortener = [[URLShortener alloc] init];
-    }
-    
-    NSString *shortUrl = [urlShortener shortURL:url];
-    
-    self.menuItemStatus.title = [NSString stringWithFormat:@"%@", shortUrl];
-    [self writeToPasteBoard: shortUrl];
+- (void)restClient:(DBRestClient *)restClient loadedSharableLink:(NSString *)link forFile:(NSString *)path {
+    NSLog(@"Write link to PasteBoard: %@", link);
+    self.menuItemStatus.title = [NSString stringWithFormat:@"%@", link];
+    [self writeToPasteBoard: link];
     
     [statusItemView showUploadImage];
-    
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
 }
 
-- (void)restClient:(DBRestClient*)client loadedAccountInfo:(DBAccountInfo*)info {
-    dropboxUID = [info userId];
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+    
+    [restClient loadSharableLinkForFile:metadata.path];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
@@ -77,7 +61,7 @@
 }
 
 - (void)authHelperStateChangedNotification:(NSNotification *)notification {
-    NSLog(@"Change UI state.");
+    NSLog(@"Change UI state: %@", [notification description]);
     [self updateUI];
     if ([[DBSession sharedSession] isLinked]) {
         // You can now start using the API!
@@ -107,7 +91,6 @@
 
 - (void)updateUI {
     if ([[DBSession sharedSession] isLinked]) {
-        [self.restClient loadAccountInfo];
         self.menuItemStatus.title = @"Connected";
         self.menuItemConnect.title = @"Disconnect from Dropbox";
     } else {
